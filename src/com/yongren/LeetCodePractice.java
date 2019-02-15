@@ -1,4 +1,5 @@
 package com.yongren;
+import static java.lang.System.out;
 
 class Dog {
     private final String name;
@@ -55,7 +56,7 @@ public class LeetCodePractice {
 
         Dog e = p.dog;
 //        e.setName("bbbbb");
-        System.out.println(" --->" + p.dog.getName());
+        out.println(" --->" + p.dog.getName());
 
 //        System.out.println(Person.num);
     }

@@ -1,4 +1,8 @@
 package com.yongren;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+
 import static java.lang.System.out;
 
 class Dog {
@@ -61,6 +65,10 @@ public class LeetCodePractice {
 //        System.out.println(Person.num);
     }
 
+
+
+    /// 时间复杂度：O(n2)
+    /// 空间复杂度：O(1)
     static int[] twoSumDemo() {
         int[] nums = {3,2,5};
         int target = 6;
@@ -77,18 +85,49 @@ public class LeetCodePractice {
         return null;
     }
 
+    /// 时间复杂度：O(n)
+    /// 空间复杂度：O(n)
     static int[] twoSumDemo2() {
-        int[] nums = {3,2,5};
+        int[] nums = {3,3};
         int target = 6;
+        Map<Integer, Integer> map= new HashMap<Integer, Integer>(nums.length);
+        for (int i = 0; i < nums.length; i++) {
+            map.put(nums[i], i);
+        }
 
+        for (int i=0; i<nums.length;i++) {
+            int other = target - nums[i];
+            if(map.containsKey(other) && map.get(other) != i) {
+                System.out.println("[ " + i +" ," + map.get(other) +" ]");
+                return new int[]{i, map.get(other)};
+            }
+        }
+        return null;
+    }
+
+    /// 时间复杂度：O(n)
+    /// 空间复杂度：O(n)
+    static int[] twoSumDemo3() {
+        int[] nums = {3, 3};
+        int target = 6;
+        Map<Integer, Integer> map= new HashMap<Integer, Integer>(nums.length);
         for (int i = 0; i < nums.length; i++) {
 
+            int other = target - nums[i];
+            if(map.containsKey(other)) {
+                System.out.println("[ " + i +" ," + map.get(other) +" ]");
+                return new int[]{i, map.get(other)};
+            }
+            map.put(nums[i], i);
         }
         return null;
     }
 
     public static void main(String[] args) {
+
+        addTwoLinklineNumsDemo();
+//        twoSumDemo3();
 //        twoSumDemo2();
-        staticDemo();
+//        staticDemo();
     }
 }

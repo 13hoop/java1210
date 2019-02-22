@@ -94,11 +94,44 @@ class LinkList {
  * 输出：7 -> 0 -> 8
  * 原因：342 + 465 = 807
  *
- * source:https://leetcode-cn.com/problems/add-two-numbers
+ * source: https://leetcode-cn.com/problems/add-two-numbers
  * */
-public class Solution {
+class Solution {
     public SinglylyNode addTwoNumbers(SinglylyNode l1, SinglylyNode l2) {
 
+        SinglylyNode n1 = l1;
+        SinglylyNode n2 = l2;
+        int carry = 0;
+
+        SinglylyNode lastN = null;
+        while (n1.next != null) {
+
+            int x = (n1 != null) ? n1.val : 0;
+            int y = (n2 != null) ? n2.val : 0;
+
+            int result = x + y;
+
+            SinglylyNode currentN = new SinglylyNode(0);
+            if(result >= 10) {
+                currentN.val = (result % 10);
+                carry = 1;
+            }else {
+                currentN.val = result + carry;
+                carry = 0;
+            }
+
+            n1 = n1.next;
+            n2 = n2.next;
+
+            if (lastN == null) {
+                lastN = currentN;
+            }else {
+                lastN.next = currentN;
+                lastN = currentN;
+            }
+        }
+
+        return lastN;
     }
 }
 
@@ -106,12 +139,15 @@ public class LinkListDemo {
 
     public static void main(String[] args){
 
-        test001();
+//        test001();
+        addTwoLinklineNumsDemo();
     }
 
 
     static void addTwoLinklineNumsDemo() {
+        Solution s = new Solution();
 
+//        s.addTwoNumbers();
     }
 
 

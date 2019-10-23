@@ -83,6 +83,8 @@ class TalkingClock {
     }
 }
 
+
+// proxy demo
 class TranceHandler implements InvocationHandler{
 
     private Object target;

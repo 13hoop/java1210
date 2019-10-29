@@ -41,9 +41,15 @@ public class ValidCode extends HttpServlet {
         }
 
         g.setColor(Color.BLUE);
+        StringBuffer buff = new StringBuffer();
         for (int i = 0; i < 4; i++) {
-            g.drawString(this.randomStr(), 25 + 20 * i, 30);
+            String str = this.randomStr();
+            buff.append(str);
+            g.drawString(str, 25 + 20 * i, 30);
         }
+
+        req.getSession().setAttribute("YR_CODE", buff.toString());
+        System.out.println(" ~> [W] session code : " + buff.toString());
 
         // c. output
         if(ImageIO.write(buffImg, "jpg", resp.getOutputStream())) {

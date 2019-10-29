@@ -15,15 +15,18 @@
             var img = document.getElementById("validImg");
             img.onclick = function () {
                 console.log(" new valid code here");
-                this.src = "/getValidCode" + "?time=" + (new Date().getTime());
+                // this.src = "/getValidCode" + "?time=" + (new Date().getTime());
+                this.src = "/getValidCode";
             }
+
+
         }
 
     </script>
 </head>
 <body>
     <div>
-        <form action="">
+        <form action="/login">
             <table>
                 <tr>
                     <td>用户名：</td>
@@ -44,6 +47,15 @@
 
             </table>
         </form>
+
+        <div>
+            USER:
+            <%=request.getSession().getAttribute("YR_USER")%>
+        </div>
+        <div>
+            msg:
+            <%=request.getSession().getAttribute("msg")%>
+        </div>
 
     </div>
 </body>

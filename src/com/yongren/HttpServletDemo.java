@@ -10,29 +10,40 @@ import java.io.PrintWriter;
 
 @WebServlet(urlPatterns = {"/login"})
 public class HttpServletDemo extends HttpServlet {
-
-    @Override
-    public void init() throws ServletException {
-        super.init();
-
-        System.out.println(" ~~> init");
-    }
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        super.doGet(req, resp);
 
-        System.out.println(" ~~> doGet methord ");
+        System.out.println(" ~~> doGet methord when login ");
 
-    }
+        req.setCharacterEncoding("utf-8");
+//        Map param = req.getParameterMap();
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println(" ~~> doPost methord ");
+        String name = req.getParameter("name");
+        String  pwd = req.getParameter("password");
+        String code = req.getParameter("validCode");
 
-        resp.setContentType("text/html;charset=utf-8");
+        String codeInSession = (String) req.getSession().getAttribute("YR_CODE");
+        System.out.println("--> " + name + " " + pwd + " " + code);
+        System.out.println(" ~> [R] session code : " + code);
 
-        PrintWriter writer = resp.getWriter();
-        writer.write("<h3>this is a title,</h3> 中文输出的编码检测");
+        if(codeInSession.equalsIgnoreCase(code)) {
+            if(name.equals("111") && pwd.equals("222")) {
+                req.getSession().setAttribute("msg", "~~ 登录成功！~~");
+
+                req.getSession().setAttribute("YR_USER", name);
+
+                // 结果重定向
+                resp.sendRedirect(req.getContextPath() + "/success.jsp");
+
+            }else {
+                System.out.println(" --> fail pwd&name here");
+                req.setAttribute("msg", "用户名或密码不匹配");
+                req.getRequestDispatcher("/login.jsp").forward(req, resp);
+            }
+        }else  {
+            System.out.println(" --> fail code here");
+            req.setAttribute("msg", "验证码错误");
+            req.getRequestDispatcher("/login.jsp").forward(req, resp);
+        }
     }
 }

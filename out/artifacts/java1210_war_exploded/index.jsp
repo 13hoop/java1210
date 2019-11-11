@@ -1,63 +1,35 @@
 <%--
   Created by IntelliJ IDEA.
   User: yr
-  Date: 2018-12-10
-  Time: 09:47
+  Date: 2019-11-09
+  Time: 11:52
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-  <head>
-    <title>$Title$</title>
-    <style>
-      body > div {
-        background: #eee;
-        width: 80%;
-        margin: auto;
-      }
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>yr_user</title>
 
-      .header {
-        width: 100%;
-        height: 20%;
-        background: cornflowerblue;
-      }
-      .mainDiv {
-        width: 100%;
-        height: 55%;
-      }
-      .footer {
-        background: darkslategrey;
-        width: 100%;
-        height: 25%;
-      }
-
-      .mainDiv .slider {
-        width: 30%;
-        height: 100%;
-      }
-    </style>
-  </head>
-  <body>
-    <div>
-      <div class="header">
-        <h4>here is a jsp Page!</h4>
-      </div>
-      <div class="mainDiv">
-        <div class="slider">
-
-        </div>
-        <div class="content">
-          <p>
-            The Apache Tomcat® software is an open source implementation of the Java Servlet, JavaServer Pages, Java Expression Language and Java WebSocket technologies. The Java Servlet, JavaServer Pages, Java Expression Language and Java WebSocket specifications are developed under the Java Community Process.
-          </p>
-          <p>
-            The Apache Tomcat software is developed in an open and participatory environment and released under the Apache License version 2. The Apache Tomcat project is intended to be a collaboration of the best-of-breed developers from around the world. We invite you to participate in this open development project. To learn more about getting involved, click here.
-          </p>
-        </div>
-      </div>
-      <div class="footer">
-
-      </div>
-    </div>
-  </body>
+    <!-- 1. 导入CSS的全局样式 -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- 2. jQuery导入，建议使用1.9以上的版本 -->
+    <script src="js/jquery-2.1.0.min.js"></script>
+    <!-- 3. 导入bootstrap的js文件 -->
+    <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    </script>
+</head>
+<body>
+<div align="center">
+    <!--<a-->
+    <!--href="list.html" style="text-decoration:none;font-size:33px">查询所有用户信息-->
+    <!--</a>-->
+    <a href="${pageContext.request.contextPath}/queryUsreList" style="text-decoration:none;font-size:33px">查询所有用户信息
+    </a>
+</div>
+</body>
 </html>

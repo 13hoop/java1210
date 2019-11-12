@@ -18,4 +18,12 @@ public class UserServiceImp implements UserService{
         }
         return list;
     }
+
+    @Override
+    public User login(User user) {
+        User u = uDao.findUser(user.getName(), user.getPassword());
+        return u;
+    }
+
+
 }

@@ -24,6 +24,7 @@
     </script>
 </head>
 <body>
+<h3>${user.name} 欢迎你</h3>
 <div align="center">
     <!--<a-->
     <!--href="list.html" style="text-decoration:none;font-size:33px">查询所有用户信息-->

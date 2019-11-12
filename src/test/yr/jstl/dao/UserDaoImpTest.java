@@ -4,15 +4,15 @@ import org.junit.Test;
 import org.junit.Before; 
 import org.junit.After;
 import yr.jstl.dao.UserDaoImp;
+import yr.jstl.util.User;
 
 import java.util.List;
 
-import yr.jstl.util.User;
-/**
+/** 
 * UserDaoImp Tester. 
 * 
 * @author <Authors name> 
-* @since <pre>Nov 11, 2019</pre> 
+* @since <pre>Nov 12, 2019</pre> 
 * @version 1.0 
 */ 
 public class UserDaoImpTest { 
@@ -31,14 +31,15 @@ public void after() throws Exception {
 * 
 */ 
 @Test
-public void testFindAll() throws Exception { 
-//TODO: Test goes here... 
+public void testFindAll() throws Exception {
+
     UserDaoImp dao = new UserDaoImp();
     List<User> list = dao.findAll();
-    for (User u: list) {
-        System.out.println(u.toString());
+    for (User obj : list) {
+        System.out.println(" >>> " + obj.toString());
     }
 
-}
+} 
+
 
 } 

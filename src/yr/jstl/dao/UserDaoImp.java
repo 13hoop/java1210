@@ -2,7 +2,6 @@ package yr.jstl.dao;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
-import yr.jstl.util.JDBCUtils;
 import yr.jstl.util.User;
 import yr.jstl.util.YRJDBCTools;
 
@@ -15,7 +14,11 @@ public class UserDaoImp implements UserDao {
     public List findAll() {
 
         String sql = "select * from user";
-        List<User> list = template.query(sql, new BeanPropertyRowMapper<User>(User.class));
+        List<User> list = template.query(sql, new BeanPropertyRowMapper<>(User.class));
+
+        for (User obj : list) {
+            System.out.println("  [UserDaoImp] >> " + obj.toString());
+        }
         return list;
     }
 }

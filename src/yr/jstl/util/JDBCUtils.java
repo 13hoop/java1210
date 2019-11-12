@@ -20,7 +20,7 @@ public class JDBCUtils {
 
     private String url = "jdbc:mysql://127.0.0.1:3306/db18?useSSL=false&serverTimezone=UTC";
     private String username = "root";
-    private String password = "k9881x05";
+    private String password = "yongren";
     private String drivename = "com.mysql.cj.jdbc.Driver";
 
     static {
@@ -38,9 +38,6 @@ public class JDBCUtils {
 
 //            /* 不使用 */
 //            DataSource dataSource = new DruidDataSource();
-
-
-
 
         } catch (IOException e) {
             e.printStackTrace();

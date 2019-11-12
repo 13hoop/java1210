@@ -28,7 +28,7 @@
     <!--<a-->
     <!--href="list.html" style="text-decoration:none;font-size:33px">查询所有用户信息-->
     <!--</a>-->
-    <a href="${pageContext.request.contextPath}/queryUsreList" style="text-decoration:none;font-size:33px">查询所有用户信息
+    <a href="${pageContext.request.contextPath}/querylist" style="text-decoration:none;font-size:33px">查询所有用户信息
     </a>
 </div>
 </body>

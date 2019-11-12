@@ -65,6 +65,16 @@ public class User {
         this.email = email;
     }
 
+//    public User(int id, String name, String gender, int age, String address, String qq, String email) {
+//        this.id = id;
+//        this.name = name;
+//        this.gender = gender;
+//        this.age = age;
+//        this.address = address;
+//        this.qq = qq;
+//        this.email = email;
+//    }
+
     @Override
     public String toString() {
         return "User{" +

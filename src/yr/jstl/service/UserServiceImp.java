@@ -11,7 +11,11 @@ public class UserServiceImp implements UserService{
     private UserDao uDao = new UserDaoImp();
     @Override
     public List<User> queryAll() {
-        List list = uDao.findAll();
+        List<User> list = uDao.findAll();
+
+        for (User obj : list) {
+            System.out.println(" [UserServiceImp] >> " + obj.toString());
+        }
         return list;
     }
 }

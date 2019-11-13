@@ -33,14 +33,10 @@ public class UserListServlet extends HttpServlet {
 //        }};
 
 
-        for (User obj : list) {
-            System.out.println(" [UserListServlet] >> " + obj.toString());
-        }
-
-
-
+//        for (User obj : list) {
+//            System.out.println(" [UserListServlet] >> " + obj.toString());
+//        }
         req.setAttribute("list", list);
-        System.out.println(">>>  " + list);
         req.getRequestDispatcher("/yrlist.jsp").forward(req, resp);
     }
 }

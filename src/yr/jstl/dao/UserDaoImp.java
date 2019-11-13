@@ -16,9 +16,9 @@ public class UserDaoImp implements UserDao {
         String sql = "select * from user";
         List<User> list = template.query(sql, new BeanPropertyRowMapper<>(User.class));
 
-        for (User obj : list) {
-            System.out.println("  [UserDaoImp] >> " + obj.toString());
-        }
+//        for (User obj : list) {
+//            System.out.println("  [UserDaoImp] >> " + obj.toString());
+//        }
         return list;
     }
 
@@ -42,5 +42,37 @@ public class UserDaoImp implements UserDao {
             e.printStackTrace();
             return null;
         }
+    }
+
+    @Override
+    public Boolean add(String name, String gender, int age, String address, String qq, String email) {
+
+        String sql = "insert into user VALUES (null, ?, ?, ?, ?, ?, ?, null);";
+        int r = 0;
+
+        System.out.println("  [UserDaoImp.add] sql >> " + sql);
+
+        try {
+             r = template.update(sql, name, gender, age, address, qq, email);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return r > 0;
+    }
+
+    @Override
+    public Boolean delete(Integer id) {
+        int r = 0;
+        String sql = "delete from user where id = ?";
+
+        System.out.println("  [UserDaoImp.delete] sql >> " + sql);
+
+        try{
+            r = template.update(sql, id);
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return r > 0;
     }
 }

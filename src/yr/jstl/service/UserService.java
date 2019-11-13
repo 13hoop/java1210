@@ -9,4 +9,6 @@ public interface UserService {
 
     User login(User user);
 
+    Boolean add(User user);
+    Boolean delete(String id);
 }

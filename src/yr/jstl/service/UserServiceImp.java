@@ -13,9 +13,9 @@ public class UserServiceImp implements UserService{
     public List<User> queryAll() {
         List<User> list = uDao.findAll();
 
-        for (User obj : list) {
-            System.out.println(" [UserServiceImp] >> " + obj.toString());
-        }
+//        for (User obj : list) {
+//            System.out.println(" [UserServiceImp] >> " + obj.toString());
+//        }
         return list;
     }
 
@@ -25,5 +25,13 @@ public class UserServiceImp implements UserService{
         return u;
     }
 
+    @Override
+    public Boolean add(User user) {
+        return  uDao.add(user.getName(), user.getGender(), user.getAge(), user.getAddress(), user.getQq(), user.getEmail());
+    }
 
+    @Override
+    public Boolean delete(String id) {
+        return uDao.delete(Integer.parseInt(id));
+    }
 }

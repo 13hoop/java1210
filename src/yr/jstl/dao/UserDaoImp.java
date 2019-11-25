@@ -45,6 +45,22 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
+    public User findUser(String id) {
+        String sql = "select * from user where id = ?";
+        System.out.println(sql + " ---> " + id);
+        User u = null;
+
+        try {
+            u = template.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class), id);
+            System.out.println("  [UserDaoImp.findUser] >> SQL: " + sql + "\n result: " + u.toString());
+            return u;
+        }catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    @Override
     public Boolean add(String name, String gender, int age, String address, String qq, String email) {
 
         String sql = "insert into user VALUES (null, ?, ?, ?, ?, ?, ?, null);";

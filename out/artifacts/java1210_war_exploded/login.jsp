@@ -29,6 +29,29 @@
         }
 
     </script>
+
+    <style>
+        .yrDemo {
+            height: 300px;
+            margin: 0 auto;
+            background: #d0e9c6;
+        }
+
+        .yrDemo .flexDemo {
+            height: 200px;
+            background: #3e8f3e;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-content: center;
+        }
+
+        .yrDemo .flexDemo .yrcell {
+            background: darkorange;
+            width: 45px;
+            height: 30px;
+        }
+    </style>
 </head>
 <body>
 <div class="container" style="width: 400px;">
@@ -62,6 +85,16 @@
         <button type="button" class="close" data-dismiss="alert" >
             <span>&times;</span></button>
         <strong>${login_msg}</strong>
+    </div>
+    <div class="yrDemo">
+        <h5>------ here for CSS demo --------</h5>
+        <div class="flexDemo">
+            <div class="yrcell">001</div>
+            <div class="yrcell">002</div>
+            <div class="yrcell">003</div>
+            <div class="yrcell">004</div>
+            <div class="yrcell">005</div>
+        </div>
     </div>
 </div>
 </body>

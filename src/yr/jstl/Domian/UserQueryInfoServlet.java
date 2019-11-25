@@ -11,13 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/editServlet")
-public class UserUpdateServlet extends HttpServlet {
+@WebServlet("/queryUserById")
+public class UserQueryInfoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String idStr = req.getParameter("id");
 
         UserService service = new UserServiceImp();
+
+        User user = null;
+        user = service.queryUser(idStr);
+        req.setAttribute("user", user);
+
+        System.out.println(" |~~> " + user.getName());
+        req.getRequestDispatcher("/update.jsp").forward(req, resp);
     }
 }

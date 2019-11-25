@@ -34,4 +34,11 @@ public class UserServiceImp implements UserService{
     public Boolean delete(String id) {
         return uDao.delete(Integer.parseInt(id));
     }
+
+    @Override
+    public User queryUser(String id) {
+        User user = null;
+        user = uDao.findUser(id);
+        return user;
+    }
 }

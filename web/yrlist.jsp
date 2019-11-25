@@ -43,7 +43,7 @@
         }
 
         function editUser(id) {
-            location.href = "${pageContext.request.contextPath}/editServlet?id=" + id;
+            location.href = "${pageContext.request.contextPath}/queryUserById?id=" + id;
         }
     </script>
 </head>
@@ -97,7 +97,7 @@
                 <td>${user.qq}</td>
                 <td>${user.email}</td>
                 <td>
-                    <a class="btn btn-default btn-sm" href="javascript:editUser($user.id)">修改</a>
+                    <a class="btn btn-default btn-sm" href="javascript:editUser(${user.id})">修改</a>
                     <a class="btn btn-default btn-sm" href="javascript:deleteUser(${user.id})">删除</a>
                 </td>
             </tr>

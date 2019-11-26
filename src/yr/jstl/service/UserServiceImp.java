@@ -31,8 +31,18 @@ public class UserServiceImp implements UserService{
     }
 
     @Override
+    public Boolean update(User user) {
+        return uDao.update(user);
+    }
+
+    @Override
     public Boolean delete(String id) {
         return uDao.delete(Integer.parseInt(id));
+    }
+
+    @Override
+    public Boolean deleteSeries(String[] idArr) {
+        return uDao.deleteSeries(idArr);
     }
 
     @Override

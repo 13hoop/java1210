@@ -36,14 +36,40 @@
     </style>
 
     <script>
+
         function deleteUser(id) {
-            if(confirm("确定删除此用户吗？")) {
+            if (confirm("确定删除此用户吗？")) {
                 location.href = "${pageContext.request.contextPath}/deleteServlet?id=" + id;
             }
         }
 
         function editUser(id) {
-            location.href = "${pageContext.request.contextPath}/editServlet?id=" + id;
+            location.href = "${pageContext.request.contextPath}/queryUserById?id=" + id;
+        }
+
+
+             function delSeries() {
+
+                if (confirm("确定删除选中用户吗？")) {
+                    var flag = false;
+
+                    //判断是否有选中条目
+                    var cbs = document.getElementsByName("item");
+                    for (var i = 0; i < cbs.length; i++) {
+                        if (cbs[i].checked) {
+                            //有一个条目选中了
+                            flag = true;
+                            break;
+                        }
+                    }
+
+                    if (flag) {
+                        //表单提交
+                        document.getElementById("selectedForm").submit();
+                    }
+                }
+
+
         }
     </script>
 </head>
@@ -55,15 +81,15 @@
         <form class="form-inline" action="${pageContext.request.contextPath}/findUserByPageServlet" method="post">
             <div class="form-group">
                 <label for="exampleInputName2">姓名</label>
-                <input type="text" name="name" value="" class="form-control" id="exampleInputName2" >
+                <input type="text" name="name" value="" class="form-control" id="exampleInputName2">
             </div>
             <div class="form-group">
                 <label for="exampleInputName3">籍贯</label>
-                <input type="text" name="address" value="" class="form-control" id="exampleInputName3" >
+                <input type="text" name="address" value="" class="form-control" id="exampleInputName3">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail2">邮箱</label>
-                <input type="text" name="email" value="" class="form-control" id="exampleInputEmail2"  >
+                <input type="text" name="email" value="" class="form-control" id="exampleInputEmail2">
             </div>
             <button type="submit" class="btn btn-default">查询</button>
         </form>
@@ -71,39 +97,41 @@
 
     <div style="float: right;margin: 5px;">
         <a class="btn btn-primary" href="${pageContext.request.contextPath}/add.jsp">添加联系人</a>
-        <a class="btn btn-primary" href="" id="">删除选中</a>
+        <a class="btn btn-primary" href="#" onclick="delSeries()">删除选中</a>
     </div>
 
-    <table border="1" class="table table-bordered table-hover">
-        <tr class="success">
-            <th><input type="checkbox"></th>
-            <th>编号</th>
-            <th>姓名</th>
-            <th>性别</th>
-            <th>年龄</th>
-            <th>籍贯</th>
-            <th>QQ</th>
-            <th>邮箱</th>
-            <th>操作</th>
-        </tr>
-        <c:forEach items="${list}" var="user" varStatus="s" >
-            <tr>
-                <th><input type="checkbox"></th>
-                <td>${s.count}</td>
-                <td>${user.name}</td>
-                <td>${user.gender}</td>
-                <td>${user.age}</td>
-                <td>${user.address}</td>
-                <td>${user.qq}</td>
-                <td>${user.email}</td>
-                <td>
-                    <a class="btn btn-default btn-sm" href="javascript:editUser(${user.id})">修改</a>
-                    <a class="btn btn-default btn-sm" href="javascript:deleteUser(${user.id})">删除</a>
-                </td>
-            </tr>
-        </c:forEach>
-    </table>
+    <form id="selectedForm" action="${pageContext.request.contextPath}/deleteSeriesServlet" method="post">
+        <table border="1" class="table table-bordered table-hover">
 
+            <tr class="success">
+                <th><input type="checkbox"></th>
+                <th>编号</th>
+                <th>姓名</th>
+                <th>性别</th>
+                <th>年龄</th>
+                <th>籍贯</th>
+                <th>QQ</th>
+                <th>邮箱</th>
+                <th>操作</th>
+            </tr>
+            <c:forEach items="${list}" var="user" varStatus="s">
+                <tr>
+                    <th><input type="checkbox" name="item" value="${user.id}"></th>
+                    <td>${s.count}</td>
+                    <td>${user.name}</td>
+                    <td>${user.gender}</td>
+                    <td>${user.age}</td>
+                    <td>${user.address}</td>
+                    <td>${user.qq}</td>
+                    <td>${user.email}</td>
+                    <td>
+                        <a class="btn btn-default btn-sm" href="javascript:editUser(${user.id})">修改</a>
+                        <a class="btn btn-default btn-sm" href="javascript:deleteUser(${user.id})">删除</a>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </form>
     <nav aria-label="Page navigation example">
         <ul class="pagination justify-content-center">
             <li class="page-item disabled">

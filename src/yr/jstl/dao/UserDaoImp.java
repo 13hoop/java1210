@@ -78,6 +78,21 @@ public class UserDaoImp implements UserDao {
     }
 
     @Override
+    public Boolean update(User user) {
+        String sql = "update user set name = ?, gender = ?, age = ?, address = ?, qq = ?, email = ? where id = ?";
+        int r = 0;
+        System.out.println("  [UserDaoImp.add] sql >> " + sql + " \n >> " + user.toString());
+
+        try {
+            r = template.update(sql, user.getName(), user.getGender(), user.getAge(), user.getAddress(), user.getQq(), user.getEmail(), user.getId());
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return r > 0;
+    }
+
+    @Override
     public Boolean delete(Integer id) {
         int r = 0;
         String sql = "delete from user where id = ?";
@@ -90,5 +105,24 @@ public class UserDaoImp implements UserDao {
             e.printStackTrace();
         }
         return r > 0;
+    }
+
+    @Override
+    public Boolean deleteSeries(String[] idArr) {
+
+        Boolean r = idArr.length > 0;
+        for (String id: idArr) {
+            String sql = "delete from user where id = ?";
+
+            System.out.println("  [UserDaoImp.delete] sql >> " + sql);
+
+            try{
+                int rr = template.update(sql, id);
+                r = rr > 0 && r;
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return r;
     }
 }

@@ -16,11 +16,12 @@ public class UserQueryInfoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String idStr = req.getParameter("id");
+        req.setCharacterEncoding("utf-8");
 
+        String idStr = req.getParameter("id");
         UserService service = new UserServiceImp();
 
-        User user = null;
+        User user;
         user = service.queryUser(idStr);
         req.setAttribute("user", user);
 

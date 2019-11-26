@@ -11,6 +11,8 @@ public interface UserService {
     List<User> queryAll();
     User queryUser(String id);
 
+    Boolean update(User user);
     Boolean add(User user);
     Boolean delete(String id);
+    Boolean deleteSeries(String[] idArr);
 }

@@ -1,5 +1,6 @@
 package yr.jstl.service;
 
+import yr.jstl.util.PageBean;
 import yr.jstl.util.User;
 
 import java.util.List;
@@ -10,6 +11,8 @@ public interface UserService {
 
     List<User> queryAll();
     User queryUser(String id);
+
+    PageBean queryByPage(int page);
 
     Boolean update(User user);
     Boolean add(User user);

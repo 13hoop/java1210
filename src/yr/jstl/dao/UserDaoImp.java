@@ -2,6 +2,7 @@ package yr.jstl.dao;
 
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import yr.jstl.util.PageBean;
 import yr.jstl.util.User;
 import yr.jstl.util.YRJDBCTools;
 
@@ -124,5 +125,20 @@ public class UserDaoImp implements UserDao {
             }
         }
         return r;
+    }
+
+    @Override
+    public List<User> findUsers(int start, int end) {
+        String sql = "select * from user limit ?, ?";
+        System.out.println("  [UserDaoImp.findUsers] sql >> " + sql + " ( " + start + " " + end + " ) ");
+        List<User> list = template.query(sql, new BeanPropertyRowMapper<>(User.class), start, end);
+        return list;
+    }
+
+    @Override
+    public int count() {
+        String sql = "select count(*) from user";
+        System.out.println("  [UserDaoImp.count] sql >> " + sql);
+        return template.queryForObject(sql, Integer.class); // 自动拆箱
     }
 }

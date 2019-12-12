@@ -2,6 +2,7 @@ package yr.jstl.service;
 
 import yr.jstl.dao.UserDao;
 import yr.jstl.dao.UserDaoImp;
+import yr.jstl.util.PageBean;
 import yr.jstl.util.User;
 
 import java.util.List;
@@ -50,5 +51,15 @@ public class UserServiceImp implements UserService{
         User user = null;
         user = uDao.findUser(id);
         return user;
+    }
+
+    @Override
+    public PageBean queryByPage(int page) {
+        PageBean pBean = null;
+        pBean = new PageBean();
+        pBean.setCurrPageNum(page);
+        pBean.setList(uDao.findUsers((page-1) * pBean.getCountPerPage(), pBean.getCountPerPage()));
+        pBean.setTotalPageNum(uDao.count());
+        return pBean;
     }
 }

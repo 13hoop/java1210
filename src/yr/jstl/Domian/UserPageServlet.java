@@ -16,9 +16,17 @@ public class UserPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String pageStr = req.getParameter("page");
+        int p = Integer.parseInt(pageStr);
+        if (p <= 1) {
+            p = 1;
+        }
+
         UserService service = new UserServiceImp();
-        PageBean data = service.queryByPage(Integer.parseInt(pageStr));
-        req.setAttribute("pageData", data);
+        PageBean data = service.queryByPage(p);
+        req.setAttribute("pData", data);
+
+        System.out.println(" >>> " + data.toString());
+
         req.getRequestDispatcher("/yrListPage.jsp").forward(req, resp);
     }
 }

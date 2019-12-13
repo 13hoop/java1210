@@ -57,9 +57,21 @@ public class UserServiceImp implements UserService{
     public PageBean queryByPage(int page) {
         PageBean pBean = null;
         pBean = new PageBean();
+
+        int p = page;
+        int count = uDao.count();
+        int preNum = pBean.getCountPerPage();
+
+        int topP = count % preNum == 0 ? count / preNum : count / preNum + 1;
+        if (topP <= page) {
+            p = topP;
+        }
+        pBean.setTotalPageNum(topP);
         pBean.setCurrPageNum(page);
-        pBean.setList(uDao.findUsers((page-1) * pBean.getCountPerPage(), pBean.getCountPerPage()));
-        pBean.setTotalPageNum(uDao.count());
+
+        int step = p-1;
+        pBean.setList(uDao.findUsers(step * preNum, (step + 1) * preNum));
+        pBean.setWholeCount(count);
         return pBean;
     }
 }
